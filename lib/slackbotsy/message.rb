@@ -7,7 +7,6 @@ module Slackbotsy
     def initialize(caller, msg)
       super()
       self.update(msg)
-      p msg
       @caller = caller          # bot object
       @bot    = caller          # alias for bot object
     end
@@ -34,8 +33,12 @@ module Slackbotsy
       @caller.upload({ channel: self['channel_name'] }.merge(options))
     end
 
+    def display_name
+      self.fetch('user').fetch('profile').fetch('display_name')
+    end
+
     ## convenience getter methods for message properties
-    %w[ token team_id channel_id channel_name timestamp user_id user_name display_name text ].each do |method|
+    %w[ token team_id channel_id channel_name timestamp user_id user_name text ].each do |method|
       define_method(method) do
         self.fetch(method, nil)
       end
