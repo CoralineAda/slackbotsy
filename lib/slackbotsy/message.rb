@@ -7,6 +7,7 @@ module Slackbotsy
     def initialize(caller, msg)
       super()
       self.update(msg)
+      p msg
       @caller = caller          # bot object
       @bot    = caller          # alias for bot object
     end
@@ -34,7 +35,7 @@ module Slackbotsy
     end
 
     ## convenience getter methods for message properties
-    %w[ token team_id channel_id channel_name timestamp user_id user_name display_name text ].each do |method|
+    %w[ token team_id channel_id channel_name timestamp user_id user_name user_display_name displayname text ].each do |method|
       define_method(method) do
         self.fetch(method, nil)
       end
