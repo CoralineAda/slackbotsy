@@ -34,7 +34,7 @@ module Slackbotsy
     end
 
     def display_name
-      self.fetch('user').fetch('profile').fetch('email')
+      self.fetch('user', "nope")
     end
 
     ## convenience getter methods for message properties
